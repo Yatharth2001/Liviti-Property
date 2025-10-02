@@ -4,7 +4,7 @@ metadata:
   name: backend
   namespace: ideaboard
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: backend
@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: ideaboard-backend:latest
+          image: your-dockerhub-username/ideaboard-backend:prod
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 4000
@@ -25,9 +25,15 @@ spec:
             - name: PORT
               value: "4000"
             - name: DATABASE_URL
-              value: "postgresql://postgres:postgres@db.ideaboard.svc.cluster.local:5432/ideaboard?schema=public"
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: DATABASE_URL
             - name: CORS_ORIGIN
-              value: "http://localhost:3000"
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: CORS_ORIGIN
           readinessProbe:
             httpGet:
               path: /health
@@ -40,6 +46,13 @@ spec:
               port: 4000
             initialDelaySeconds: 10
             periodSeconds: 20
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
 ---
 apiVersion: v1
 kind: Service

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: app-secrets
+  namespace: ideaboard
+type: Opaque
+stringData:
+  DATABASE_URL: "" # e.g. postgresql://user:pass@host:5432/db?sslmode=require
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: ideaboard
+data:
+  CORS_ORIGIN: "https://your-domain.com"
+  NEXT_PUBLIC_API_URL: "https://your-domain.com/api"

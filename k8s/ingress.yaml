@@ -8,7 +8,8 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - http:
+    - host: your-domain.com
+      http:
         paths:
           - path: /api/?(.*)
             pathType: Prefix
@@ -24,3 +25,7 @@ spec:
                 name: frontend
                 port:
                   number: 80
+  tls:
+    - hosts:
+        - your-domain.com
+      secretName: ideaboard-tls  # create via cert-manager or manually
