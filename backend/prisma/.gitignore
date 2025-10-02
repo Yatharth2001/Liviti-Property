@@ -1,0 +1,15 @@
+# Prisma database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Prisma migrations (keep the structure but ignore the actual migration files)
+# Uncomment the line below if you want to ignore migration files
+# migrations/*/migration.sql
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
