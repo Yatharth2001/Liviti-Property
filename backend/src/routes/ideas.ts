@@ -20,10 +20,10 @@ router.get("/", async (_req, res, next) => {
       updatedAt: idea.updatedAt.toISOString()
     }));
     
-    res.json(response);
+    return res.json(response);
   } catch (error) {
     logger.error("Error fetching ideas:", error);
-    next(error);
+    return next(error);
   }
 });
 
@@ -42,7 +42,7 @@ router.post("/", async (req, res, next) => {
       updatedAt: idea.updatedAt.toISOString()
     };
     
-    res.status(201).json(response);
+    return res.status(201).json(response);
   } catch (error) {
     if (error instanceof Error && error.name === "ZodError") {
       const zodError = error as any;
@@ -50,7 +50,7 @@ router.post("/", async (req, res, next) => {
       return res.status(400).json(createValidationErrorResponse(message));
     }
     logger.error("Error creating idea:", error);
-    next(error);
+    return next(error);
   }
 });
 
@@ -75,13 +75,13 @@ router.post("/:id/upvote", async (req, res, next) => {
       updatedAt: idea.updatedAt.toISOString()
     };
     
-    res.json(response);
+    return res.json(response);
   } catch (error: any) {
     if (error?.code === "P2025") {
       return res.status(404).json(createErrorResponse(new AppError("Idea not found", 404, "NOT_FOUND")));
     }
     logger.error("Error upvoting idea:", error);
-    next(error);
+    return next(error);
   }
 });
 

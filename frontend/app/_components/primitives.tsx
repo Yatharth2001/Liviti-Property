@@ -36,8 +36,8 @@ export function Container({ children, className = '' }: { children: ReactNode; c
   return <div className={`container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ${className}`}>{children}</div>
 }
 
-export function Section({ children, className = '' }: { children: ReactNode; className?: string }) {
-  return <section className={`py-16 sm:py-20 lg:py-24 ${className}`}>{children}</section>
+export function Section({ id, children, className = '' }: { id?: string; children: ReactNode; className?: string }) {
+  return <section id={id} className={`py-16 sm:py-20 lg:py-24 ${className}`}>{children}</section>
 }
 
 export function SectionHeading({ title, subtitle }: { title: string; subtitle?: string }) {

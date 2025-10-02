@@ -30,7 +30,7 @@ export function createServer(): express.Application {
 
   // 404 handler
   app.use((_req, res) => {
-    res.status(404).json(createErrorResponse(new AppError("Route not found", 404, "NOT_FOUND")));
+    return res.status(404).json(createErrorResponse(new AppError("Route not found", 404, "NOT_FOUND")));
   });
 
   // Centralized error handler
@@ -43,7 +43,7 @@ export function createServer(): express.Application {
     
     const status = err.status ?? 500;
     const message = err.message ?? "Internal Server Error";
-    res.status(status).json(createErrorResponse(new AppError(message, status, "INTERNAL_ERROR")));
+    return res.status(status).json(createErrorResponse(new AppError(message, status, "INTERNAL_ERROR")));
   });
 
   return app;
