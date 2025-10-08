@@ -11,8 +11,8 @@ export function createServer(): express.Application {
 
   // CORS configuration
   app.use(cors({ 
-    origin: env.CORS_ORIGIN,
-    credentials: false 
+    origin: true,
+    credentials: true 
   }));
 
   // Body parsing middleware
