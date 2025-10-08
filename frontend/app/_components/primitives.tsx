@@ -1,4 +1,5 @@
 import { type ReactNode } from 'react'
+import type { Route } from 'next';
 import Link from 'next/link'
 
 type ButtonProps = {
@@ -20,9 +21,9 @@ export function Button({ href, onClick, children, variant = 'primary', className
 
   if (href) {
     return (
-      <Link className={`${base} ${styles} ${className}`} href={href}>
-        {children}
-      </Link>
+     <Link className={`${base} ${styles} ${className}`} href={href as Route}>
+  {children}
+</Link>
     )
   }
   return (

@@ -11,8 +11,7 @@ export default function Footer() {
         </div>
         <nav className="flex items-center gap-6 text-sm text-gray-700">
           <Link href="/app" className="hover:text-gray-900">Open App</Link>
-          <Link href="/privacy" className="hover:text-gray-900">Privacy</Link>
-          <Link href="/terms" className="hover:text-gray-900">Terms</Link>
+         
         </nav>
       </Container>
       <Container>
